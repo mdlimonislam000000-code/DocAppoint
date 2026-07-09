@@ -1,100 +1,147 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
-import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
-import { redirect } from 'next/navigation';
+import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // 🎯 redirect-এর বদলে useRouter ইম্পোর্ট করা হয়েছে
 import React from 'react';
+import toast from 'react-hot-toast';
+import { FcGoogle } from 'react-icons/fc';
 
 const RegisterPage = () => {
+    const router = useRouter(); // 🎯 রাউটার ইনিশিয়ালাইজ করা হয়েছে
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget)
-        const user = Object.fromEntries(formData.entries())
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries());
 
         const { data, error } = await authClient.signUp.email({
             email: user.email,
-            password : user.password,
+            password: user.password,
             name: user.name,
             image: user.image,
-        })
-        if(data){
-            redirect('/')
+        });
+
+        if (data) {
+            toast.success('Register successful');
+            router.push('/'); // 🎯 ক্লায়েন্ট সাইডে সঠিক রিডাইরেকশন
         }
-        if(error){
-            alert('Something is went')
+        if (error) {
+            toast.error(error.message || 'Something went wrong'); // 🎯 এরর মেসেজ ডাইনামিক করা হয়েছে
         }
-    }
+    };
+
+    const handleGoogleSingIn = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        });
+    };
 
     return (
-        <div className='max-w-7xl mx-auto '>
-            <div>
-                <p className='text-2xl font-bold text-center mt-7'>
-                    Create a account
+        /* 🎯 পুরো পেজটিকে সেন্টারে আনার জন্য flex এবং প্যাডিং দেওয়া হয়েছে */
+        <div className='min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4'>
+            
+            <div className='w-full max-w-md'>
+                <p className='text-2xl md:text-3xl font-bold text-center mt-4 text-gray-800'>
+                    Create an account
                 </p>
+
+                {/* 🎯 কার্ডের প্যাডিং এবং রেসপন্সিভ উইডথ ঠিক করা হয়েছে */}
+                <Card className='border border-gray-100 mt-6 p-6 md:p-8 shadow-sm rounded-2xl bg-white'>
+                    {/* 🎯 w-full ব্যবহার করা হয়েছে যেন মোবাইলে স্ক্রিন ফিট থাকে */}
+                    <Form className="flex w-full flex-col gap-4" onSubmit={onSubmit}>
+                        
+                        <TextField
+                            isRequired
+                            name="name"
+                            type="text"
+                            className="w-full"
+                        >
+                            <Label className="text-sm font-semibold text-gray-700">Name</Label>
+                            <Input placeholder="Enter your name" className="mt-1" />
+                            <FieldError className="text-xs text-red-500 mt-1" />
+                        </TextField>
+
+                        <TextField
+                            isRequired
+                            name="image"
+                            type="url"
+                            className="w-full"
+                        >
+                            <Label className="text-sm font-semibold text-gray-700">Image url</Label>
+                            <Input placeholder="Enter your Image url" className="mt-1" />
+                            <FieldError className="text-xs text-red-500 mt-1" />
+                        </TextField>
+
+                        <TextField
+                            isRequired
+                            name="email"
+                            type="email"
+                            className="w-full"
+                            validate={(value) => {
+                                if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                                    return "Please enter a valid email address";
+                                }
+                                return null;
+                            }}
+                        >
+                            <Label className="text-sm font-semibold text-gray-700">Email</Label>
+                            <Input placeholder="john@example.com" className="mt-1" />
+                            <FieldError className="text-xs text-red-500 mt-1" />
+                        </TextField>
+
+                        <TextField
+                            isRequired
+                            minLength={8}
+                            name="password"
+                            type="password"
+                            className="w-full"
+                            validate={(value) => {
+                                if (value.length < 8) {
+                                    return "Password must be at least 8 characters";
+                                }
+                                if (!/[A-Z]/.test(value)) {
+                                    return "Password must contain at least one uppercase letter";
+                                }
+                                if (!/[0-9]/.test(value)) {
+                                    return "Password must contain at least one number";
+                                }
+                                return null;
+                            }}
+                        >
+                            <Label className="text-sm font-semibold text-gray-700">Password</Label>
+                            <Input placeholder="Enter your password" className="mt-1" />
+                            <Description className="text-[11px] text-gray-400 mt-1">
+                                Must be at least 8 characters with 1 uppercase and 1 number
+                            </Description>
+                            <FieldError className="text-xs text-red-500 mt-1" />
+                        </TextField>
+
+                        <div className="flex gap-2 mt-2">
+                            <Button type="submit" className='w-full bg-blue-600 text-white font-medium py-2.5 rounded-xl hover:bg-blue-700 transition-colors'>
+                                Register
+                            </Button>
+                        </div>
+
+                        <div className='mt-1'>
+                            <Button 
+                                type="button"
+                                onClick={handleGoogleSingIn} 
+                                className='w-full flex items-center justify-center gap-2 border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 py-2.5 rounded-xl transition-colors'
+                            > 
+                                <FcGoogle className="text-xl" /> Sign in with Google 
+                            </Button>
+                        </div>
+
+                        <Separator className="my-2" />
+
+                        <div className='text-center text-sm text-gray-600'>
+                            <p>You have an account? <Link className='text-blue-600 font-semibold hover:underline' href={'/login'}>Login</Link></p>
+                        </div>
+
+                    </Form>
+                </Card>
             </div>
-            <Card className='border-2 mt-8'>
-                <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit} >
-                    <TextField
-                        isRequired
-                        name="name"
-                        type="name">
-                        <Label>Name</Label>
-                        <Input placeholder="Enter your name" />
-                        <FieldError />
-                    </TextField>
-                    <TextField
-                        isRequired
-                        name="image"
-                        type="url">
-                        <Label>Image url</Label>
-                        <Input placeholder="Enter your Image url" />
-                        <FieldError />
-                    </TextField>
-                    <TextField
-                        isRequired
-                        name="email"
-                        type="email"
-                        validate={(value) => {
-                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                                return "Please enter a valid email address";
-                            }
-                            return null;
-                        }}
-                    >
-                        <Label>Email</Label>
-                        <Input placeholder="john@example.com" />
-                        <FieldError />
-                    </TextField>
-                    <TextField
-                        isRequired
-                        minLength={8}
-                        name="password"
-                        type="password"
-                        validate={(value) => {
-                            if (value.length < 8) {
-                                return "Password must be at least 8 characters";
-                            }
-                            if (!/[A-Z]/.test(value)) {
-                                return "Password must contain at least one uppercase letter";
-                            }
-                            if (!/[0-9]/.test(value)) {
-                                return "Password must contain at least one number";
-                            }
-                            return null;
-                        }}
-                    >
-                        <Label>Password</Label>
-                        <Input placeholder="Enter your password" />
-                        <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
-                        <FieldError />
-                    </TextField>
-                    <div className="flex gap-2">
-                        <Button type="submit" className={'w-full rounded-none'}>
-                            Register
-                        </Button>
-                    </div>
-                </Form>
-            </Card>
         </div>
     );
 };
