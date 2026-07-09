@@ -1,6 +1,6 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
-import { Button, Avatar } from '@heroui/react'; 
+import { Button, Avatar } from '@heroui/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -8,6 +8,9 @@ export default function DashboardLayout({ children }) {
     const { data } = authClient.useSession();
     const loggedInUser = data?.user;
     const pathname = usePathname();
+
+    const userImage = loggedInUser?.image || loggedInUser?.avatar || null;
+    console.log(userImage, "limon")
 
     return (
         <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
@@ -20,12 +23,11 @@ export default function DashboardLayout({ children }) {
 
                         {loggedInUser && (
                             <div className="hidden md:flex items-center gap-3 p-3 bg-gray-50 rounded-xl mb-6">
-                                <Avatar
-                                    src={loggedInUser?.image}
-                                    name={loggedInUser?.name}
-                                    size="md"
-                                    className="w-10 h-10 object-cover shrink-0"
-                                />
+                                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
+                                    <Avatar.Image referrerPolicy='no-referrer' alt="John Doe" src={userImage} />
+                                    <Avatar.Fallback>{loggedInUser.name[0]}</Avatar.Fallback>
+                                </Avatar>
+
                                 <div className="flex flex-col min-w-0">
                                     <span className="text-sm font-bold text-gray-800 truncate">{loggedInUser.name}</span>
                                     <span className="text-xs text-gray-500 truncate">{loggedInUser.email}</span>

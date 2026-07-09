@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      data-theme="light"
       className={`${geist.className}  h-full antialiased`}
     >
       <body className="container mx-auto flex flex-col">
