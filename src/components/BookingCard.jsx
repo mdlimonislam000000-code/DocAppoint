@@ -154,7 +154,7 @@ const BookingCard = ({ doctors }) => {
 
                                 <div className="w-full flex flex-col gap-1.5">
                                     <Label className="text-sm font-semibold text-gray-700">Problem (Optional)</Label>
-                                    <Input name="message" placeholder="Enter any specific note" variant="bordered" radius="sm" />
+                                    <Input name="message" placeholder="Say What is your problem" variant="bordered" radius="sm" />
                                 </div>
                             </form>
                         </Modal.Body>
