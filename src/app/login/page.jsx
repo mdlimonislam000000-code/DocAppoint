@@ -1,6 +1,7 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
@@ -14,19 +15,19 @@ const LoginPage = () => {
 
         const { data, error } = await authClient.signIn.email({
             email: user.email,
-            password : user.password,
+            password: user.password,
         })
 
         // console.log({data  , error})
-        if(data){
+        if (data) {
             redirect('/')
         }
-        if(error){
+        if (error) {
             alert('Something is went')
         }
     }
 
-    const handleGoogleSingIn = async()=>{
+    const handleGoogleSingIn = async () => {
         await authClient.signIn.social({
             provider: "google"
         })
@@ -41,7 +42,7 @@ const LoginPage = () => {
             </div>
             <Card className='border-2 mt-8'>
                 <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit} >
-                  
+
                     <TextField
                         isRequired
                         name="email"
@@ -93,9 +94,17 @@ const LoginPage = () => {
                         <p>or sing up with</p>
                         <Separator></Separator>
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <Button onClick={handleGoogleSingIn} variant='outline' className={'w-full'}> <FcGoogle />Sing in with Google </Button>
                     </div>
+
+                    <Separator></Separator>
+                    
+                        <div className='text-center '>
+                            <p>Don't have a account ? <Link className='text-[#3277f5]' href={'/register'}>Register</Link></p>
+                        </div>
+                   
+                    <Separator></Separator>
                 </div>
             </Card>
         </div>
