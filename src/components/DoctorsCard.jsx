@@ -39,7 +39,7 @@ const DoctorsCard = ({ doctor }) => {
                     <span className="font-bold text-[1.1rem] text-gray-900">Fee: {fee} taka</span>
                 </div>
 
-                <Link href={`/allAppointments/${_id}`}>
+                <Link href={`/doctors/${_id}`}>
                     <Button className={'w-full rounded-none '}>View Details</Button>
                 </Link>
             </Card>

@@ -50,7 +50,7 @@ const Navbar = () => {
                         <p>Home</p>
                     </Link>
 
-                    <Link href={'/allAppointments'} className={`flex gap-1 items-center ${pathname === '/allAppointments' ? 'text-blue-600 font-bold' : ''}`}>
+                    <Link href={'/doctors'} className={`flex gap-1 items-center ${pathname === '/doctors' ? 'text-blue-600 font-bold' : ''}`}>
                         <IoDocumentText />
                         <p>All Appointments</p>
                     </Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
                         <p>Home</p>
                     </Link>
 
-                    <Link href={'/allAppointments'} onClick={toggleMenu} className={`flex gap-2 items-center px-3 py-2 rounded-lg text-sm transition-colors ${pathname === '/allAppointments' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700 hover:bg-amber-50/60'}`}>
+                    <Link href={'/doctors'} onClick={toggleMenu} className={`flex gap-2 items-center px-3 py-2 rounded-lg text-sm transition-colors ${pathname === '/doctors' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700 hover:bg-amber-50/60'}`}>
                         <IoDocumentText className="text-base shrink-0" />
                         <p>All Appointments</p>
                     </Link>

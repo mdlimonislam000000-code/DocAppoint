@@ -67,13 +67,13 @@ const Hero = () => {
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto">
                         <Link 
-                            href="/allAppointments" 
+                            href="/doctors" 
                             className="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/20 transition-all duration-200"
                         >
                             Book Appointment
                         </Link>
                         <Link 
-                            href="/allAppointments" 
+                            href="/doctors" 
                             className="w-full sm:w-auto text-center bg-white hover:bg-gray-50 active:scale-95 text-gray-700 border-2 border-gray-200/80 font-semibold px-8 py-3.5 rounded-xl shadow-sm transition-all duration-200"
                         >
                             See All Specialists

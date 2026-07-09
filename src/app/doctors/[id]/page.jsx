@@ -10,7 +10,11 @@ import { IoIosTimer } from 'react-icons/io';
 const DoctorsDetails = async ({ params }) => {
     const { id } = await params;
 
-    const res = await fetch(`http://localhost:5000/doctors/${id}`);
+    const res = await fetch(`http://localhost:5000/doctors/${id}`, {
+        headers: {
+            authorization: "logged in"
+        }
+    });
     const doctors = await res.json();
 
     const { image, name, availability, specialty, experience, hospital, fee, rating, description, location } = doctors;
@@ -22,7 +26,7 @@ const DoctorsDetails = async ({ params }) => {
                 <Image
                     src={image}
                     alt='Doctor Image'
-                    fill 
+                    fill
                     className="object-cover w-full h-full"
                     priority
                 />

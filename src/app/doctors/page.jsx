@@ -87,7 +87,7 @@ const AllAppointmentsPage = () => {
                 </div>
             ) : (
                 <div className="text-center mt-10 text-gray-400 font-medium border-2 p-20 rounded-2xl">
-                    No doctors found 
+                    No doctors found
                 </div>
             )}
         </div>

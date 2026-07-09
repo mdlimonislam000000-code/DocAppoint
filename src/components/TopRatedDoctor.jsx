@@ -80,7 +80,7 @@ const TopRatedDoctors = async () => {
                                     </div>
 
                                     <Link
-                                        href={`/allAppointments/${doctor._id}`}
+                                        href={`/doctors/${doctor._id}`}
                                         className="text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 px-5 py-2.5 rounded-xl shadow-md shadow-blue-600/10 transition-all"
                                     >
                                         Book Now
