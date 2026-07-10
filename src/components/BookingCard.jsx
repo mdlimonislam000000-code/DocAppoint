@@ -1,6 +1,7 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
 import { Button, DateField, Input, Label, Modal, TimeField } from '@heroui/react';
+import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaEnvelope } from 'react-icons/fa';
@@ -50,6 +51,10 @@ const BookingCard = ({ doctors }) => {
         }
 
         const {data: tokenData} = await authClient.token()
+
+        if (!tokenData) {
+        redirect('/login');
+    }
         console.log(tokenData)
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
             method: "POST",

@@ -14,8 +14,9 @@ const DoctorsCard = ({ doctor }) => {
                         src={image}
                         alt={`${name}'s picture`}
                         fill
-                        className="object-cover" // w-full h-full এখানে আর লাগবে না, object-cover একাই সাইজ ঠিক রাখবে
+                        className="object-cover" 
                         sizes="(max-width: 768px) 100vw, 320px"
+                        loading="eager"
                     />
                 </div>
                 <div>

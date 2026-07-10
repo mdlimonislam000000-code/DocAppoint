@@ -25,7 +25,7 @@ const Hero = () => {
         fetchDoctors();
     }, []);
 
-   
+
     useEffect(() => {
         if (doctors.length === 0) return;
 
@@ -45,7 +45,7 @@ const Hero = () => {
             <div className="absolute bottom-[-15%] left-[-5%] w-[300px] h-[300px] bg-sky-200/20 rounded-full blur-2xl pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">
-                
+
                 <div className="flex flex-col gap-6 text-center md:text-left items-center md:items-start">
                     <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-full shadow-sm">
                         <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
@@ -66,14 +66,14 @@ const Hero = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto">
-                        <Link 
-                            href="/doctors" 
+                        <Link
+                            href="/doctors"
                             className="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/20 transition-all duration-200"
                         >
                             Book Appointment
                         </Link>
-                        <Link 
-                            href="/doctors" 
+                        <Link
+                            href="/doctors"
                             className="w-full sm:w-auto text-center bg-white hover:bg-gray-50 active:scale-95 text-gray-700 border-2 border-gray-200/80 font-semibold px-8 py-3.5 rounded-xl shadow-sm transition-all duration-200"
                         >
                             See All Specialists
@@ -94,20 +94,22 @@ const Hero = () => {
                 </div>
 
                 <div className="relative w-full h-[350px] sm:h-[430px] lg:h-[480px] flex items-center justify-center">
-                    
+
                     {loading ? (
                         <div className="w-full h-full bg-gray-200 animate-pulse rounded-3xl" />
                     ) : (
                         doctors.length > 0 && (
                             <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
-                               
-                                <Image 
-                                    key={activeDoctor?._id} 
-                                    src={activeDoctor?.image } 
+
+                                <Image
+                                    key={activeDoctor?._id}
+                                    src={activeDoctor?.image}
                                     alt={activeDoctor?.name || "Doctor"}
                                     fill
-                                    className="object-cover transition-all duration-700 ease-in-out animate-[fadeIn_0.5s_ease-in-out]"/>
-                                
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    className="object-cover transition-all duration-700 ease-in-out animate-[fadeIn_0.5s_ease-in-out]"
+                                />
+
                                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/40 transform transition-transform duration-300 group-hover:scale-[1.02]">
                                     <div className="flex justify-between items-center">
                                         <div>
@@ -130,7 +132,7 @@ const Hero = () => {
 
                                 <div className="absolute top-4 right-4 flex gap-1.5 bg-black/20 backdrop-blur-sm px-2 py-1.5 rounded-full">
                                     {doctors.map((_, idx) => (
-                                        <div 
+                                        <div
                                             key={idx}
                                             className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/50'}`}
                                         />

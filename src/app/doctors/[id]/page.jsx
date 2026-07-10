@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth';
 import { Button, Card } from '@heroui/react';
 import { headers } from 'next/headers';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { CiHospital1 } from 'react-icons/ci';
 import { FaLocationArrow, FaRegStar } from 'react-icons/fa';
@@ -19,10 +20,19 @@ export const metadata = {
 
 const DoctorsDetails = async ({ params }) => {
     const { id } = await params;
-    const token = await auth.api.getToken({
-        headers: await headers()
-    })
-    console.log(token)
+
+    try {
+        const token = await auth.api.getToken({
+            headers: await headers()
+        })
+    }catch(error){
+         redirect('/login');
+    }
+
+    // console.log(token)
+    // if (!token) {
+       
+    // }
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${id}`, {
         headers: {

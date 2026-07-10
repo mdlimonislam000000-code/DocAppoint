@@ -6,13 +6,13 @@ const TopRatedDoctors = async () => {
     let topDoctors = [];
 
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`, { next: { revalidate: 60 } }); 
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`, { next: { revalidate: 60 } });
         if (res.ok) {
             const allDoctors = await res.json();
 
             topDoctors = allDoctors
-                .filter(doc => (doc.rating >= 4.5) || true) 
-                .slice(0, 3); 
+                .filter(doc => (doc.rating >= 4.5) || true)
+                .slice(0, 3);
         }
     } catch (error) {
         console.error("Top rated doctors fetch error:", error);
@@ -35,7 +35,7 @@ const TopRatedDoctors = async () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {topDoctors.map((doctor) => {
-                    const doctorRating = doctor?.rating ;
+                    const doctorRating = doctor?.rating;
 
                     return (
                         <div
@@ -47,12 +47,14 @@ const TopRatedDoctors = async () => {
                                     src={doctor?.image}
                                     alt={doctor?.name}
                                     fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"/>
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+                                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                />
 
                                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-xl shadow-sm flex items-center gap-1">
                                     <span className="text-amber-500 text-sm">★</span>
                                     <span className="text-xs font-bold text-gray-800">{doctorRating}</span>
-                                   
+
                                 </div>
                             </div>
 
