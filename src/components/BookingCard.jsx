@@ -50,7 +50,7 @@ const BookingCard = ({ doctors }) => {
         if (!tokenData) {
         redirect('/login');
     }
-        console.log(tokenData)
+        // console.log(tokenData)
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
             method: "POST",
             headers: {

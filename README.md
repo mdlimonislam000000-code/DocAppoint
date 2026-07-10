@@ -182,34 +182,6 @@ npm start
 
 ---
 
-# 🔑 Environment Variables
-
-### Client
-
-```env
-NEXT_PUBLIC_SERVER_URL=
-
-NEXT_PUBLIC_BETTER_AUTH_URL=
-```
-
-### Server
-
-```env
-PORT=
-
-MONGODB_URI=
-
-BETTER_AUTH_SECRET=
-
-BETTER_AUTH_URL=
-
-GOOGLE_CLIENT_ID=
-
-GOOGLE_CLIENT_SECRET=
-
-JWT_SECRET=
-```
-
 ---
 
 # 📌 Assignment Requirements Covered
