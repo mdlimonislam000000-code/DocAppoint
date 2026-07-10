@@ -24,7 +24,7 @@ const DoctorsDetails = async ({ params }) => {
     let token = null;
 
     try {
-        const token = await auth.api.getToken({
+         token = await auth.api.getToken({
             headers: await headers()
         })
     }catch(error){
