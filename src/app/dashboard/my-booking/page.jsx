@@ -2,6 +2,14 @@ import BookedCard from '@/components/BookedCard';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
+export const metadata = {
+    title: " My Booking | DocAppointment ",
+    description: "...",
+    icons: {
+        icon: '/doctor-icon.svg'
+    },
+}
+
 const MyBookingPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
@@ -13,7 +21,7 @@ const MyBookingPage = async () => {
     })
     // console.log(token)
 
-    const res = await fetch(`http://localhost:5000/booking/${userId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${userId}`, {
         headers: {
             authorization: `Bearer ${token}`
         }

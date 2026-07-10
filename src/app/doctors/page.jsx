@@ -3,6 +3,11 @@ import DoctorsCard from '@/components/DoctorsCard';
 import React, { useState, useEffect } from 'react';
 import { FiSearch, FiChevronDown } from 'react-icons/fi';
 
+// export const metadata = {
+//     title : " All doctors",
+//     description : "...",
+// }
+
 const AllAppointmentsPage = () => {
     const [allDoctors, setAllDoctors] = useState([]);
     const [searchDoctor, setSearchDoctor] = useState('');
@@ -11,7 +16,7 @@ const AllAppointmentsPage = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const res = await fetch('http://localhost:5000/doctors');
+                const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
                 const data = await res.json();
                 setAllDoctors(data);
             } catch (error) {

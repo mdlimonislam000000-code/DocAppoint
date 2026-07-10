@@ -2,13 +2,15 @@
 import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'; // 🎯 redirect-এর বদলে useRouter ইম্পোর্ট করা হয়েছে
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 
+
+
 const RegisterPage = () => {
-    const router = useRouter(); // 🎯 রাউটার ইনিশিয়ালাইজ করা হয়েছে
+    const router = useRouter();
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -24,10 +26,10 @@ const RegisterPage = () => {
 
         if (data) {
             toast.success('Register successful');
-            router.push('/'); // 🎯 ক্লায়েন্ট সাইডে সঠিক রিডাইরেকশন
+            router.push('/');
         }
         if (error) {
-            toast.error(error.message || 'Something went wrong'); // 🎯 এরর মেসেজ ডাইনামিক করা হয়েছে
+            toast.error(error.message || 'Something went wrong');
         }
     };
 
@@ -38,19 +40,18 @@ const RegisterPage = () => {
     };
 
     return (
-        /* 🎯 পুরো পেজটিকে সেন্টারে আনার জন্য flex এবং প্যাডিং দেওয়া হয়েছে */
+
         <div className='min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4'>
-            
+
             <div className='w-full max-w-md'>
                 <p className='text-2xl md:text-3xl font-bold text-center mt-4 text-gray-800'>
                     Create an account
                 </p>
 
-                {/* 🎯 কার্ডের প্যাডিং এবং রেসপন্সিভ উইডথ ঠিক করা হয়েছে */}
                 <Card className='border border-gray-100 mt-6 p-6 md:p-8 shadow-sm rounded-2xl bg-white'>
-                    {/* 🎯 w-full ব্যবহার করা হয়েছে যেন মোবাইলে স্ক্রিন ফিট থাকে */}
+
                     <Form className="flex w-full flex-col gap-4" onSubmit={onSubmit}>
-                        
+
                         <TextField
                             isRequired
                             name="name"
@@ -124,12 +125,12 @@ const RegisterPage = () => {
                         </div>
 
                         <div className='mt-1'>
-                            <Button 
+                            <Button
                                 type="button"
-                                onClick={handleGoogleSingIn} 
+                                onClick={handleGoogleSingIn}
                                 className='w-full flex items-center justify-center gap-2 border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 py-2.5 rounded-xl transition-colors'
-                            > 
-                                <FcGoogle className="text-xl" /> Sign in with Google 
+                            >
+                                <FcGoogle className="text-xl" /> Sign in with Google
                             </Button>
                         </div>
 

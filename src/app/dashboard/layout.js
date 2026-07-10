@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }) {
     const pathname = usePathname();
 
     const userImage = loggedInUser?.image || loggedInUser?.avatar || null;
-    console.log(userImage, "limon")
+    // console.log(userImage, "limon")
 
     return (
         <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">

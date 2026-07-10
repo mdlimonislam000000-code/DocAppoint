@@ -6,6 +6,8 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 
+
+
 const LoginPage = () => {
 
     const onSubmit = async (e) => {
@@ -34,18 +36,18 @@ const LoginPage = () => {
     }
 
     return (
-        /* 🎯 মোবাইলে দুপাশে প্যাডিং (px-4) এবং কার্ডটি যেন মাঝখানে থাকে তার ব্যবস্থা করা হয়েছে */
+
         <div className='max-w-7xl mx-auto px-4 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]'>
-            {/* 🎯 কন্টেইনারটিকে মোবাইলে ফুল উইডথ (w-full) এবং সর্বোচ্চ সাইজ max-w-md লক করা হয়েছে */}
+
             <div className='w-full max-w-md flex flex-col items-center'>
                 <div>
                     <p className='text-2xl font-bold text-center mt-7'>
                         Login Your account
                     </p>
                 </div>
-                {/* 🎯 মোবাইলে কার্ডটির প্যাডিং p-4 করা হয়েছে যেন সুন্দর ফিট হয় */}
+
                 <Card className='border-2 mt-8 p-4 md:p-6 w-full flex flex-col items-center'>
-                    {/* 🎯 w-96 টিকে md:w-96 করা হয়েছে এবং মোবাইলের জন্য w-full দেওয়া হয়েছে */}
+
                     <Form className="flex w-full md:w-96 flex-col gap-4" onSubmit={onSubmit} >
 
                         <TextField
@@ -93,7 +95,6 @@ const LoginPage = () => {
                         </div>
                     </Form>
 
-                    {/* 🎯 গুগল বাটন এবং নিচের সেকশনটিকেও মোবাইলে w-full এবং বড় স্ক্রিনে w-96 করা হয়েছে */}
                     <div className="w-full md:w-96 mt-4">
                         <div className='text-center mb-2'>
                             <Separator></Separator>

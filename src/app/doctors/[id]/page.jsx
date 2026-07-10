@@ -9,14 +9,22 @@ import { FaLocationArrow, FaRegStar } from 'react-icons/fa';
 import { FaBangladeshiTakaSign } from 'react-icons/fa6';
 import { IoIosTimer } from 'react-icons/io';
 
+export const metadata = {
+    title: " Doctors Details | DocAppointment  ",
+    description: "...",
+    icons: {
+        icon: '/doctor-icon.svg'
+    },
+}
+
 const DoctorsDetails = async ({ params }) => {
     const { id } = await params;
     const token = await auth.api.getToken({
-        headers : await headers()
+        headers: await headers()
     })
     console.log(token)
 
-    const res = await fetch(`http://localhost:5000/doctors/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${id}`, {
         headers: {
             authorization: `Bearer ${token?.token || token}`
         }

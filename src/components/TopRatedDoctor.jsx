@@ -6,7 +6,7 @@ const TopRatedDoctors = async () => {
     let topDoctors = [];
 
     try {
-        const res = await fetch('http://localhost:5000/doctors', { next: { revalidate: 60 } }); 
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`, { next: { revalidate: 60 } }); 
         if (res.ok) {
             const allDoctors = await res.json();
 

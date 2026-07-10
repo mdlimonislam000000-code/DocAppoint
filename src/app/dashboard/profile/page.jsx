@@ -2,6 +2,14 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 
+export const metadata = {
+    title: " My profile | DocAppointment ",
+    description: "...",
+    icons: {
+        icon: '/doctor-icon.svg'
+    },
+}
+
 const ProfilePage = async () => {
 
     const session = await auth.api.getSession({
@@ -13,7 +21,7 @@ const ProfilePage = async () => {
     let bookings = [];
 
     try {
-        const res = await fetch(`http://localhost:5000/booking/${userId}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${userId}`);
         if (res.ok) {
             bookings = await res.json();
         }

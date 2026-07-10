@@ -11,7 +11,7 @@ const Hero = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const res = await fetch('http://localhost:5000/doctors');
+                const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
                 if (res.ok) {
                     const data = await res.json();
                     setDoctors(data.slice(0, 10));
