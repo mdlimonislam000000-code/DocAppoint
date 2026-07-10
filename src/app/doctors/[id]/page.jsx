@@ -1,5 +1,7 @@
 import BookingCard from '@/components/BookingCard';
+import { auth } from '@/lib/auth';
 import { Button, Card } from '@heroui/react';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 import { CiHospital1 } from 'react-icons/ci';
@@ -9,10 +11,14 @@ import { IoIosTimer } from 'react-icons/io';
 
 const DoctorsDetails = async ({ params }) => {
     const { id } = await params;
+    const token = await auth.api.getToken({
+        headers : await headers()
+    })
+    console.log(token)
 
     const res = await fetch(`http://localhost:5000/doctors/${id}`, {
         headers: {
-            authorization: "logged in"
+            authorization: `Bearer ${token?.token || token}`
         }
     });
     const doctors = await res.json();
