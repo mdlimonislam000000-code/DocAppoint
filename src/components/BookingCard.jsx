@@ -49,11 +49,13 @@ const BookingCard = ({ doctors }) => {
             message: message       
         }
 
-        // ব্যাকএন্ডে ডাটা পোস্ট করা
+        const {data: tokenData} = await authClient.token()
+        console.log(tokenData)
         const res = await fetch('http://localhost:5000/booking', {
             method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(bookingData)
         })
