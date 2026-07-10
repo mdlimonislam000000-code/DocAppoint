@@ -21,6 +21,8 @@ export const metadata = {
 const DoctorsDetails = async ({ params }) => {
     const { id } = await params;
 
+    let token = null;
+
     try {
         const token = await auth.api.getToken({
             headers: await headers()
