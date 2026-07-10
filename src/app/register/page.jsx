@@ -8,6 +8,8 @@ import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
+
+
 const RegisterPage = () => {
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);

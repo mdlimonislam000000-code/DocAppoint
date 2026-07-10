@@ -9,7 +9,6 @@ const Footer = () => {
     return (
         <div className='mt-5 container mx-auto bg-amber-100 p-9'>
 
-            {/* 🎯 এখানে grid-cols-1 md:grid-cols-3 করা হয়েছে যেন মোবাইলে ১ কলাম এবং ডেস্কটপে ৩ কলাম হয় */}
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6'>
                 <div>
                     <div className='flex items-center gap-3'>
@@ -19,7 +18,6 @@ const Footer = () => {
                         </span>
                     </div>
                     <div>
-                        {/* 🎯 মোবাইলে টেক্সট ভেঙে যাওয়ার হাত থেকে বাঁচাতে w-84 সরিয়ে w-full md:w-84 করা হয়েছে */}
                         <p className='text-[1.1rem] w-full md:w-84 mt-3 text-[#43414189]'>
                             Your trusted doctor appointment manager. Easily find doctors and book quickly.
                         </p>
@@ -52,7 +50,6 @@ const Footer = () => {
                     <div>
                         <p className='font-bold text-2xl '>Social Links</p>
                     </div>
-                    {/* 🎯 ছোট মোবাইলে সোশ্যাল লিংকগুলো যেন গাদাগাদি না হয়, তাই sm:grid-cols-2 দেওয়া হয়েছে */}
                     <div className='grid grid-cols-2 sm:grid-cols-2 gap-2 mt-4 '>
                         <p className='flex items-center gap-1'>
                             <FaFacebook />

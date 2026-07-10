@@ -74,7 +74,6 @@ const DoctorsDetails = async ({ params }) => {
                         </span>
                     </div>
 
-                    {/* Available Time */}
                     <div className="flex flex-col gap-1 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
                         <p className="font-bold text-gray-600 text-sm mb-1">Available Time:</p>
                         <p className="text-xs text-gray-700 font-semibold pl-2 border-l-2 border-cyan-500">
@@ -87,7 +86,6 @@ const DoctorsDetails = async ({ params }) => {
                         )}
                     </div>
 
-                    {/* Description */}
                     <div className='text-sm text-gray-600 leading-relaxed'>
                         <p className="font-bold text-gray-700 text-base">Description :</p>
                         <p className="mt-1">{description}</p>

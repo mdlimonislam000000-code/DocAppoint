@@ -16,20 +16,15 @@ const BookingCard = ({ doctors }) => {
     const loggedInUser = data?.user;
 
     const handleSubmit = async () => {
-        // 🎯 ফর্মের আইডি দিয়ে একবারে সব ইনপুট ফিল্ডের ডাটা ধরলাম
         const form = document.getElementById('booking-form');
         const formData = new FormData(form);
-
         const phone = formData.get('phone');
         const gender = formData.get('gender');
         const message = formData.get('message');
-        const patientName = formData.get('name'); // ইউজারের নাম যদি চেঞ্জ করে
-
-        // HeroUI অবজেক্টকে জাভাস্ক্রিপ্ট ডেট এবং টাইম স্ট্রিং-এ রূপান্তর
+        const patientName = formData.get('name'); 
         const formattedDate = selectedDate ? new Date(selectedDate.toString()) : null;
         const formattedTime = selectedTime ? selectedTime.toString() : null;
 
-        // 🎯 এখন সবগুলো ডাটা একসাথে একটি অবজেক্টে সাজানো হলো
         const bookingData = {
             userId: loggedInUser?.id,
             userImage: loggedInUser?.image,

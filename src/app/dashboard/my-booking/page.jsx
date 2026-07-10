@@ -40,7 +40,7 @@ const MyBookingPage = async () => {
             </div>
 
             <div className="mt-6">
-                {/* কন্ডিশন চেক: বুকিং না থাকলে মেসেজ দেখাবে, থাকলে কার্ড দেখাবে */}
+               
                 {!bookings || bookings.length === 0 ? (
                     <div className="text-center py-12 border-2 border-dashed border-gray-200 rounded-2xl bg-gray-50 mt-4">
                         <p className="text-xl font-semibold text-gray-600">

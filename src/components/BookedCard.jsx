@@ -21,16 +21,13 @@ const BookedCard = ({ booking }) => {
     return (
         <div className="mb-4 md:mb-5">
             
-            {/* 🎯 মোবাইলের জন্য p-4 এবং ডেস্কটপে p-6 করা হয়েছে যেন মোবাইলে কার্ডটি ছোট ও গোছানো দেখায় */}
             <Card className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 p-4 md:p-6 items-center shadow-sm hover:shadow-md border border-gray-100 transition-all bg-white rounded-2xl">
                 
-                {/* Patient Information Section */}
                 <div className="flex flex-col gap-2.5 border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 pr-0 md:pr-4">
                     <div className="text-[10px] md:text-xs font-bold text-blue-600 uppercase tracking-wider">
                         Patient Information
                     </div>
-                    <div className="flex items-center gap-3">
-                        {/* মোবাইলের জন্য অ্যাভাটার সাইজ কিছুটা ছোট (w-10 h-10) করা হয়েছে */}
+                    <div className="flex items-center gap-3">                 
                         <Avatar className="w-10 h-10 md:w-12 md:h-12 ring-2 ring-blue-100 shrink-0">
                             <Avatar.Image referrerPolicy="no-referrer" alt={userName} src={userImage} />
                             <Avatar.Fallback>{userName?.charAt(0).toUpperCase() || "P"}</Avatar.Fallback>
@@ -55,13 +52,12 @@ const BookedCard = ({ booking }) => {
                     )}
                 </div>
 
-                {/* Doctor Information Section */}
                 <div className="flex flex-col gap-2.5 border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 pr-0 md:pr-4 justify-center">
                     <div className="text-[10px] md:text-xs font-bold text-green-600 uppercase tracking-wider">
                         Doctor Information
                     </div>
                     <div className="flex items-center gap-3">
-                        {/* মোবাইলের জন্য ডাক্তার অ্যাভাটার সাইজও ছোট করা হয়েছে */}
+                     
                         <Avatar className="w-10 h-10 md:w-12 md:h-12 ring-2 ring-green-100 shrink-0">
                             <Avatar.Image referrerPolicy="no-referrer" alt={doctorName} src={doctorImage} />
                             <Avatar.Fallback>{doctorName?.charAt(0).toUpperCase() || "D"}</Avatar.Fallback>
@@ -80,7 +76,6 @@ const BookedCard = ({ booking }) => {
                     </div>
                 </div>
 
-                {/* Action Buttons Section */}
                 <div className="flex flex-col gap-2 w-full justify-center pl-0 md:pl-2 pt-2 md:pt-0">
                     <BookingEditCard bookingId={_id} booking={booking}></BookingEditCard>
                     <BookingCancelAlert bookingId={_id} ></BookingCancelAlert>
