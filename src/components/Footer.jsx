@@ -34,7 +34,7 @@ const Footer = () => {
                             <p >Home</p>
                         </Link>
 
-                        <Link href={'/allAppointments'} className='flex gap-2 items-center '>
+                        <Link href={'/doctors'} className='flex gap-2 items-center '>
                             <IoDocumentText />
                             <p>All Appointments</p>
                         </Link>
