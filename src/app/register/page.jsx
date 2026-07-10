@@ -3,14 +3,18 @@ import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
-
-
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
 const RegisterPage = () => {
     const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
+    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -40,16 +44,13 @@ const RegisterPage = () => {
     };
 
     return (
-
         <div className='min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4'>
-
             <div className='w-full max-w-md'>
                 <p className='text-2xl md:text-3xl font-bold text-center mt-4 text-gray-800'>
                     Create an account
                 </p>
 
                 <Card className='border border-gray-100 mt-6 p-6 md:p-8 shadow-sm rounded-2xl bg-white'>
-
                     <Form className="flex w-full flex-col gap-4" onSubmit={onSubmit}>
 
                         <TextField
@@ -95,7 +96,7 @@ const RegisterPage = () => {
                             isRequired
                             minLength={8}
                             name="password"
-                            type="password"
+                            type={showPassword ? "text" : "password"} 
                             className="w-full"
                             validate={(value) => {
                                 if (value.length < 8) {
@@ -111,7 +112,16 @@ const RegisterPage = () => {
                             }}
                         >
                             <Label className="text-sm font-semibold text-gray-700">Password</Label>
-                            <Input placeholder="Enter your password" className="mt-1" />
+                            <div className="relative w-full mt-1">
+                                <Input placeholder="Enter your password" className="w-full pr-10" />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none text-xl"
+                                >
+                                    {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                                </button>
+                            </div>
                             <Description className="text-[11px] text-gray-400 mt-1">
                                 Must be at least 8 characters with 1 uppercase and 1 number
                             </Description>

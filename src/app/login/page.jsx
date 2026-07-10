@@ -3,12 +3,13 @@ import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
-
-
-
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 const LoginPage = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const toggleVisibility = () => setIsVisible(!isVisible);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -20,12 +21,12 @@ const LoginPage = () => {
             password: user.password,
         })
 
-        // console.log({data  , error})
         if (data) {
+            toast.success('Login Successfully')
             redirect('/')
         }
         if (error) {
-            alert('Something is went')
+            toast.error('Login failed')
         }
     }
 
@@ -36,9 +37,7 @@ const LoginPage = () => {
     }
 
     return (
-
         <div className='max-w-7xl mx-auto px-4 flex flex-col items-center justify-center min-h-[calc(100vh-80px)]'>
-
             <div className='w-full max-w-md flex flex-col items-center'>
                 <div>
                     <p className='text-2xl font-bold text-center mt-7'>
@@ -47,7 +46,6 @@ const LoginPage = () => {
                 </div>
 
                 <Card className='border-2 mt-8 p-4 md:p-6 w-full flex flex-col items-center'>
-
                     <Form className="flex w-full md:w-96 flex-col gap-4" onSubmit={onSubmit} >
 
                         <TextField
@@ -65,11 +63,12 @@ const LoginPage = () => {
                             <Input placeholder="john@example.com" />
                             <FieldError />
                         </TextField>
+
                         <TextField
                             isRequired
                             minLength={8}
                             name="password"
-                            type="password"
+                            type={isVisible ? "text" : "password"}
                             validate={(value) => {
                                 if (value.length < 8) {
                                     return "Password must be at least 8 characters";
@@ -84,10 +83,27 @@ const LoginPage = () => {
                             }}
                         >
                             <Label>Password</Label>
-                            <Input placeholder="Enter your password" />
+                            <div className="relative flex items-center w-full">
+                                <Input
+                                    placeholder="Enter your password"
+                                    className="w-full pr-10"
+                                />
+                                <button
+                                    className="absolute right-3 focus:outline-none text-xl text-gray-500"
+                                    type="button"
+                                    onClick={toggleVisibility}
+                                >
+                                    {isVisible ? (
+                                        <IoEyeOffOutline className="pointer-events-none" />
+                                    ) : (
+                                        <IoEyeOutline className="pointer-events-none" />
+                                    )}
+                                </button>
+                            </div>
                             <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                             <FieldError />
                         </TextField>
+
                         <div className="flex gap-2">
                             <Button type="submit" className={'w-full rounded-none'}>
                                 Login
